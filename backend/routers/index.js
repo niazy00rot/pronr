@@ -1,6 +1,6 @@
-const router = require('express').router();
+const router = require('express').Router()
 const jwt = require('jsonwebtoken');
-const {register,login}= require('../../db/index')
+const {register,login}= require('../../db/index.js')
 
 router.post('/login', async (req,res)=>{
     const {username,password} = req.body

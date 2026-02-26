@@ -33,3 +33,5 @@ async function login(username,password){
         client.release()
     }
 }
+
+module.exports= {register,login}
