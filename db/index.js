@@ -5,6 +5,7 @@ async function register(username,password,name,job_name,email, phone){
     try{
         const res=await client.query(`insert into users (
             username,password,name,job_name,email,phone) values ($1,$2,$3,$4,$5,$6) returning id`,[username,password,name,job_name,email,phone])
+            console.log(res)
         return res.rows[0].id
     }
     catch(err){

@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+}
+
+/* Layout */
+.container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+}
+
+/* Sidebar Left */
+#person-info {
+    background: linear-gradient(180deg, #c2bfe2, #9190a1);
+    padding: 30px 20px;
+    border-right: 3px solid #6c63ff;
+    box-shadow: 5px 0 30px rgba(108, 99, 255, 0.25);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+#person-info div {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(108, 99, 255, 0.25);
+}
+
+#person-info h1 {
+    font-size: 16px;
+    color: #2a2a40;
+    font-weight: 600;
+}
+
+/* Edit Button */
+#person-info button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #6c63ff, #5848e5);
+    border: none;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#person-info button a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+#person-info button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.4);
+}
+
+/* Main Content Right */
+.main-content {
+    padding: 25px;
+}
+
+/* Navbar */
+#nav-bar {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    padding: 18px 30px;
+    margin-bottom: 25px;
+}
+
+#nav-bar ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+#nav-bar a {
+    text-decoration: none;
+    color: #6c63ff;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#nav-bar a:hover {
+    color: #5848e5;
+}
+
+/* Projects Grid */
+#projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Card Style */
+.card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 11px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    background: #6c63ff;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #5848e5;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    #person-info {
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 3px solid #6c63ff;
+    }
+}

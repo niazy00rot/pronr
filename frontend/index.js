@@ -25,7 +25,7 @@ login_form.addEventListener('submit', async (e)=>{
         const data= await res.json()
         if(res.ok){
             localStorage.setItem('token',data.token)
-            window.location.href = 'stage.html'
+            window.location.href = 'dashboarde.html'
         }
         else{
             alert('wrong username or password')
