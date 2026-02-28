@@ -73,4 +73,4 @@ async function create_user_table(){
         client.release()
     }
 }
-create_user_table()
+// create_user_table()
