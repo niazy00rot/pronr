@@ -18,10 +18,14 @@ async function get_user_data(id){
             WHERE u.id = $1
             GROUP BY u.id
         `, [id]) 
-        console.log(data.rows[0])
+        return data.rows
             
     }
     catch(err){
         console.error(err)
     }
+    finally{
+        client.release()
+    }
 }
+module.exports= {get_user_data}
