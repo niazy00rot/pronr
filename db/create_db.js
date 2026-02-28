@@ -15,7 +15,8 @@ async function create_user_table(){
          await pool.query(`create table if not exists projects(
             id serial primary key ,
             name varchar(50) not null ,
-            owner_id int not null , foreign key (owner_id) references users(id) 
+            owner_id int not null,
+            description TEXT , foreign key (owner_id) references users(id) 
             )`)
 
 
@@ -69,4 +70,4 @@ async function create_user_table(){
         client.release()
     }
 }
-// create_user_table()
+create_user_table()

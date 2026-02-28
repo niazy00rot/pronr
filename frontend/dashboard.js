@@ -21,6 +21,21 @@ function render_person_info(data){
         </button>
     `
 }
+
+
+function render_projects(projects){
+    const proj=document.getElementById('projects')
+    projects.forEach((p) => {
+        const div=document.createElement('div')
+        div.classList.add('card')
+        div.innerHTML=`
+            <h1>${p.name}/h1>
+            <p>${p.description}</p>
+            <a class="btn" href="#">View Details</a>
+        `
+        proj.appendChild(div)
+    });
+}
 async function get_user_info(){
     const token = localStorage.getItem('token')
     try{
@@ -39,9 +54,9 @@ async function get_user_info(){
     }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
    (async()=>{
+    render_projects([{name:'niazy',description:"wharab"},{name:'niazy',description:"wharab"}])
     const data = await get_user_info()
     console.log(data)
     render_person_info(data[0])
