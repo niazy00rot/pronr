@@ -6,10 +6,11 @@ async function create_project(user_id,name,des){
     const client = await pool.connect()
     try{
         const res = await client.query(`
-            insert into projects (name,description,owner_id)values(${name},${des},${user_id}) returning id`)
+            insert into projects (name,description,owner_id)values($1,$2,$3) returning id`,
+            [name, des, user_id.id])
         await client.query(`
-            insert into project_member(proj_id,user_id,user_role)values(${res},${user_id},'owner')
-            `)
+            insert into project_member(proj_id,user_id,user_role)values($1,$2,$3)`,
+            [res.rows[0].id, user_id.id, 'owner'])
         return res
     }
     catch(err){
