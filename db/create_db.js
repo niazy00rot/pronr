@@ -59,7 +59,10 @@ async function create_user_table(){
             pro_id int not null ,foreign key (pro_id) references projects(id),
             status varchar(20) not null
             )`)
-        
+        await pool.query(
+    `ALTER TABLE projects
+    ADD COLUMN description TEXT;`
+)
         console.log('Tables created successfully')
 
     }

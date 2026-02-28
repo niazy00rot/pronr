@@ -5,7 +5,7 @@ const cors = require('cors')
 const index_router = require('./routers/index.js')
 const root_router= require('./routers/root.js')
 const user_router= require('./routers/user.js')
-
+const db= require('../db/create_db.js') // Ensure database tables are created on server start;
 const port = 3001
 
 // Parse JSON bodies before routes

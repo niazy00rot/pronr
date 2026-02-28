@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
-const {get_user_data} = require('../../db/user.js')
+const {get_user_data,get_user_projects} = require('../../db/user.js')
 
 router.get('/user', async (req,res)=>{
     const auth = req.headers.authorization
