@@ -13,7 +13,8 @@ async function get_project_by_id(){
                 'Authorization': `Bearer ${token}`
             }
         })
-        return res;
+        const data = await res.json();
+        return data;
     }
     catch(err){
        console.error('Error fetching data:', err);
@@ -37,7 +38,7 @@ async function render_project_data(data){
 document.addEventListener('DOMContentLoaded', () => {
    (async()=>{
     const data = await get_project_by_id()
-    console.log(data.rows)
+    console.log(data)
     render_project_data(data)
    })()
         })
