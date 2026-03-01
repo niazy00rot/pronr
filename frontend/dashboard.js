@@ -32,7 +32,7 @@ function render_projects(projects){
         div.innerHTML=`
             <h1>${p.name}</h1>
             <p>${p.description}</p>
-            <a class="btn" href="#">View Details</a>
+            <a class="btn" href="project.html?id=${p.id}">View Details</a>
         `
         proj.appendChild(div)
     });
@@ -58,7 +58,7 @@ async function get_user_info(){
 async function get_user_projects(){
     const token = localStorage.getItem('token')
     try{
-        const res = await fetch('/project', {
+        const res = await fetch('/projects', {
             method: 'GET',
             headers:{
                 'Content-Type':'Application/json',

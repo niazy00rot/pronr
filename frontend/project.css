@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+    color: #fff;
+}
+
+/* Layout */
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 40px;
+}
+
+/* Navbar / Project Header */
+#nav-bar {
+    background: #1f1f33;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+#nav-bar h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+#nav-bar p {
+    color: #bbb;
+    font-size: 15px;
+    max-width: 700px;
+}
+
+#nav-bar button {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    padding: 10px 18px;
+    background: #6c63ff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#nav-bar button:hover {
+    background: #5848e5;
+}
+
+/* Content Layout */
+#content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Task Card */
+#tasks {
+    background: #1f1f33;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    transition: 0.3s;
+}
+
+#tasks:hover {
+    transform: translateY(-5px);
+}
+
+/* Task inner content */
+.req h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.req p {
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 12px;
+}
+
+.req h3 {
+    font-size: 14px;
+    color: #6c63ff;
+    margin-bottom: 15px;
+}
+
+/* Buttons inside task */
+#tasks button {
+    padding: 8px 14px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #2c2c4a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+#tasks button:hover {
+    background: #6c63ff;
+}
+
+/* Add Task Button */
+.add-task {
+    grid-column: 1 / -1;
+    padding: 14px;
+    background: #6c63ff;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-task:hover {
+    background: #5848e5;
+}

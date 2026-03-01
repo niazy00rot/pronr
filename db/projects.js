@@ -47,7 +47,25 @@ async function get_user_projects(user_id){
     }
 }
 
-module.exports={create_project,get_user_projects}
+async function get_project_by_id(id){
+    const client = await pool.connect()
+    try{
+        const data = await client.query(`
+            Select id,name,description
+            from projects
+            where id=${id}
+        `)
+        return data.rows
+    }
+    catch(err){
+        console.error(err)
+    }
+    finally{
+        client.release();
+    }
+}
+
+module.exports={create_project,get_user_projects,get_project_by_id}
 
 
 
