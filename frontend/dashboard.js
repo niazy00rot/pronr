@@ -75,6 +75,7 @@ async function get_user_projects(){
 
 function render_create_project_form(){
     const form= document.getElementById('create_project')
+    form.style.display = 'block'   // يظهر الفورم
     form.innerHTML=`
         <form>
         <label for="name">project name</label>
@@ -83,10 +84,8 @@ function render_create_project_form(){
         <label for="description">project description</label>
         <input id="description" name="project description" placeholder="project description" required>
         <button type="submit" class="btn">create</button>
-        
         </form>
     `
-    // attach submit handler once form elements exist
     create_project()
 }
 
