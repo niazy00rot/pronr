@@ -56,7 +56,7 @@ async function get_task_members(task_id){
         console.log(res)
         const m =[]
         res.forEach(x => {
-            const data=client.query(`select id,name,job_name from users where id = $1`,[id]).rows[0]
+            const data=client.query(`select id,name,job_name from users where id = $1`,[x]).rows[0]
             console.log(data)
             m.push(data)
         });
@@ -120,9 +120,8 @@ async function update_status(task_id , status){
 async function get_project_owner(pro_id){
     const client =await pool.connect()
     try{
-        const id = await client.query(`select owner_id from projects where id = $1`,[pro_id]).rows[0]
-        console.log(id)
-        return id
+        const id = await client.query(`select owner_id from projects where id = $1`,[pro_id])
+        return id.rows[0].owner_id
     }
     catch(err){
         console.error(err)

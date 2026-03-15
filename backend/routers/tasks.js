@@ -1,17 +1,16 @@
 const router = require('express').Router()
-const {get_project_tasks,add_task,get_task_members,delete_task,add_member,delete_task, get_project_owner, delete_member } = require('../../db/tasks')
+const {get_project_tasks,add_task,get_task_members,add_member,delete_task, get_project_owner, delete_member } = require('../../db/tasks')
 const jwt = require('jsonwebtoken')
 
-//add task 
+
 router.get('/tasks', async (req,res)=>{
     const project_id = req.query.id
     const auth = req.headers.authorization
     const token = auth.split(' ')[1]
     try{
         const owner_id = await get_project_owner(project_id)
-        const id = jwt.verify(tpken,process.env.JWT_SECRET).id.id
+        const id = jwt.verify(token,process.env.JWT_SECRET).id.id
         const tasks= await get_project_tasks(project_id)
-        console.log(tasks)
         res.status(200).json(tasks)
     }
     catch(err){
@@ -20,14 +19,17 @@ router.get('/tasks', async (req,res)=>{
     }
 })
 
+
 router.post('/tasks', async (req,res)=>{
     const project_id = req.query.id
+    console.log(project_id)
     const {name, description} = req.body
     const auth =req.headers.authorization 
     
-    const token = auth.split('')[1]
+    const token = auth.split(' ')[1]
     try{
         const owner_id = await get_project_owner(project_id)
+        console.log(owner_id)
         const id = jwt.verify(token,process.env.JWT_SECRET).id.id
         if(owner_id == id){
             const t_id= await add_task(name, description, project_id)
@@ -49,7 +51,7 @@ router.delete('/tasks', async (req,res)=>{
     const project_id = req.query.id
     const {task_id} = req.body
     const auth =req.headers.authorization 
-    const token = auth.split('')[1]
+    const token = auth.split(' ')[1]
     try{
         const owner_id = await get_project_owner(project_id)
         const id = jwt.verify(token,process.env.JWT_SECRET).id.id
@@ -72,7 +74,7 @@ router.put('/tasks',async(req,res)=>{
     const project_id = req.query.id
     const {task_id, status}= req.body
     const auth = req.headers.authorization
-    const token = auth.split('')[1]
+    const token = auth.split(' ')[1]
     try{
         const owner_id =await get_project_owner(project_id)
         const id =jwt.verify(token,process.env.JWT_SECRET).id.id
@@ -92,7 +94,7 @@ router.put('/tasks',async(req,res)=>{
 
 router.get('/members', async(req,res)=>{
     const auth = req.headers.authorization
-    const token = auth.split('')[1]
+    const token = auth.split(' ')[1]
     const task_id = req.query.task_id
     try{
         const id = jwt.verify(token,process.env.JWT_SECRET).id.id
@@ -107,7 +109,7 @@ router.get('/members', async(req,res)=>{
 
 router.delete('/member', async (req,res)=>{
     const auth = req.headers.authorization
-    const token = auth.split('')[1]
+    const token = auth.split(' ')[1]
     const {task_id,member_id} = req.body
     try{
         const owner_id =await get_project_owner(project_id)
@@ -127,6 +129,6 @@ router.delete('/member', async (req,res)=>{
 })
 
 
-
+module.exports=router
 
 
