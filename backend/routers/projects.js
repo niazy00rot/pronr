@@ -5,7 +5,6 @@ const { create_project,get_user_projects, get_project_by_id}= require('../../db/
 router.post('/project',async(req,res)=>{
     const {project_name,des}=req.body
     const auth = req.headers.authorization || ''
-    // Token should be prefixed with Bearer
     const token = auth.split(' ')[1]
     try{
         const payload = jwt.verify(token,process.env.JWT_SECRET)

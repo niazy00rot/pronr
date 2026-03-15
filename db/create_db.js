@@ -41,8 +41,7 @@ async function create_user_table(){
             title varchar(50) not null,
             project_id int not null,foreign key (project_id) references projects(id),
             description text,
-            satus varchar(20) not null,
-            group_id int not null ,foreign key (group_id) references groups(group_id)
+            satus varchar(20) not null
             )`)
             
          
@@ -73,4 +72,35 @@ async function create_user_table(){
         client.release()
     }
 }
+
+
+async function s(){
+await pool.query(`
+DROP TABLE IF EXISTS groups CASCADE
+`)
+console.log('h')
+
+
+await pool.query(`
+ALTER TABLE tasks
+DROP COLUMN IF EXISTS group_id
+`)
+
+console.log('h')
+await pool.query(`
+CREATE TABLE IF NOT EXISTS task_members (
+    id SERIAL PRIMARY KEY,
+    task_id INT NOT NULL,
+    member_id INT NOT NULL,
+    FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE,
+    FOREIGN KEY (member_id) REFERENCES users(id) ON DELETE CASCADE
+)
+`)
+console.log('h')
+}
+
+
+
+// s()
+
 // create_user_table()

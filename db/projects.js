@@ -1,7 +1,5 @@
-// projects module should use the database pool directly
 const pool = require('./init_db')
 
- 
 async function create_project(user_id,name,des){
     const client = await pool.connect()
     try{

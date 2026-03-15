@@ -1,43 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Dashboard</title>
+
     <link rel="stylesheet" href="dashboarde.css">
+
 </head>
+
 <body>
 
     <div class="container">
 
-        <!-- Sidebar Left -->
-        <div id="person-info">
-            
-        </div>
+        <!-- Sidebar -->
 
-        <!-- Right Content -->
-        <div class="main-content">
-            
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h2>Project Manager</h2>
+            </div>
+
+            <div id="person-info">
+                <!-- user info will render here -->
+            </div>
+
+            <button class="logout-btn">Logout</button>
+
+        </aside>
+
+
+        <!-- Main Content -->
+
+        <main class="main-content">
+
             <!-- Navbar -->
-            <div id="nav-bar">
-                <ul>
-                    <button onclick="render_create_project_form()">Create New</button>
-                    <li><a href="#">Notifications</a></li>
-                </ul>
+
+            <div class="navbar">
+
+                <button class="create-btn" onclick="render_create_project_form()">
+                    + Create Project
+                </button>
+
+                <div class="nav-right">
+                    <a href="#">Notifications</a>
+                </div>
+
             </div>
 
-            <!-- Projects -->
+
+            <!-- Projects Grid -->
+
             <div id="projects">
-                
+
+                <!-- cards render here -->
+
             </div>
 
-        </div>
+        </main>
+
+
+        <!-- Create Project Modal -->
 
         <div id="create_project">
+
         </div>
 
     </div>
+
     <script src="dashboard.js"></script>
 
 </body>
+
 </html>
