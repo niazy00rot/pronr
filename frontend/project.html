@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Project</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -31,7 +31,15 @@
                     <h1 class="page-title">Tasks</h1>
                     <p class="page-sub" id="task-count">Fetching tasks...</p>
                 </div>
-                <button class="add-task" id="add-task-btn">+ New Task</button>
+                <div class="header-actions">
+                    <!-- owner only, shown after owner check -->
+                    <button class="btn-outline hidden" id="join-requests-btn">
+                        📋 Join Requests
+                        <span class="badge hidden" id="requests-badge">0</span>
+                    </button>
+                    <button class="btn-outline hidden" id="invite-btn">+ Invite Member</button>
+                    <button class="add-task" id="add-task-btn">+ New Task</button>
+                </div>
             </div>
 
             <div id="tasks-grid">
@@ -91,6 +99,40 @@
             <div class="modal-footer">
                 <button class="btn-secondary" id="cancel-delete-modal">Cancel</button>
                 <button class="btn-danger" id="confirm-delete-task">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INVITE MODAL (owner only) -->
+    <div class="modal-overlay hidden" id="invite-modal">
+        <div class="modal modal-sm">
+            <div class="modal-header">
+                <h2>Invite Member</h2>
+                <button class="modal-close" id="close-invite-modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <label>Username</label>
+                <input type="text" id="invite-username-input" placeholder="e.g. john99" />
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-invite-modal">Cancel</button>
+                <button class="btn-primary" id="confirm-invite">Send Invite</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JOIN REQUESTS MODAL (owner only) -->
+    <div class="modal-overlay hidden" id="requests-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Join Requests</h2>
+                <button class="modal-close" id="close-requests-modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <ul id="requests-list"></ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-requests-modal">Close</button>
             </div>
         </div>
     </div>

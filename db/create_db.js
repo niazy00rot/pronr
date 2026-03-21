@@ -45,13 +45,15 @@ async function create_user_table(){
             )`)
             
          
-            
-        await pool.query(`create table if not exists join_req(
+            // requist
+        await pool.query(`create table if not exists join_req(   
             user_id int not null , foreign key (user_id) references users(id),
             pro_id int not null ,foreign key (pro_id) references projects(id),
             status varchar(20) not null
             )`)
-        
+
+            
+           // invite
         await pool.query(`
             create table if not exists add_req(
             user_id int not null , foreign key (user_id) references users(id),

@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const router =require('express').Router()
-const { create_project,get_user_projects, get_project_by_id}= require('../../db/projects.js')
+const { create_project,get_user_projects, get_project_by_id, get_project_data_by_name}= require('../../db/projects.js')
 
 router.post('/project',async(req,res)=>{
     const {project_name,des}=req.body
@@ -39,11 +39,29 @@ router.get('/project', async(req,res)=>{
     try{
         const id= jwt.verify(token, process.env.JWT_SECRET)
         const data= await get_project_by_id(project_id)
-        console.log(data)
         res.status(200).json(data)
     }
     catch(err){
         console.error(err.stack)
     }
 })
+
+router.get('/requist/project', async(req,res)=>{
+    const auth= req.headers.authorization
+    const token= auth.split(' ')[1]
+    const project_name = req.query.name; 
+    try{
+        const id= jwt.verify(token, process.env.JWT_SECRET).id.id
+        const data= await get_project_data_by_name(project_name,id)
+        if(data.error){
+            return res.status(404).json(data)
+        }
+        res.status(200).json(data)
+    }
+    catch(err){
+        res.status(500).json({error:err.message})
+        console.error(err.stack)
+    }
+})
+
 module.exports= router

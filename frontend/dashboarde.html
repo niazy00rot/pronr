@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Dashboard</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dashboarde.css">
-
 </head>
 
 <body>
@@ -17,62 +16,85 @@
     <div class="container">
 
         <!-- Sidebar -->
-
         <aside class="sidebar">
-
             <div class="logo">
                 <h2>Project Manager</h2>
             </div>
-
             <div id="person-info">
-                <!-- user info will render here -->
+                <!-- user info renders here -->
             </div>
-
-            <button class="logout-btn">Logout</button>
-
+            <button class="logout-btn" id="logout-btn">Logout</button>
         </aside>
 
-
         <!-- Main Content -->
-
         <main class="main-content">
 
             <!-- Navbar -->
-
             <div class="navbar">
-
                 <button class="create-btn" onclick="render_create_project_form()">
                     + Create Project
                 </button>
-
                 <div class="nav-right">
-                    <a href="#">Notifications</a>
+                    <button class="search-btn" id="search-btn">🔍 Find Project</button>
+                    <button class="notif-btn" id="notif-btn">
+                        🔔 Invites
+                        <span class="notif-badge hidden" id="notif-badge">0</span>
+                    </button>
                 </div>
-
             </div>
 
-
             <!-- Projects Grid -->
-
             <div id="projects">
-
                 <!-- cards render here -->
-
             </div>
 
         </main>
 
-
         <!-- Create Project Modal -->
-
-        <div id="create_project">
-
-        </div>
+        <div id="create_project"></div>
 
     </div>
+
+    <!-- INVITES MODAL -->
+    <div class="modal-overlay hidden" id="invites-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Pending Invites</h2>
+                <button class="modal-close" id="close-invites-modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <ul id="invites-list"></ul>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn-close" id="cancel-invites-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH PROJECT MODAL -->
+    <div class="modal-overlay hidden" id="search-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Find a Project</h2>
+                <button class="modal-close" id="close-search-modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="search-input-wrap">
+                    <input type="text" id="search-project-input" placeholder="Enter project name..." />
+                    <button class="btn-search-go" id="search-go-btn">Search</button>
+                </div>
+                <ul id="search-results"></ul>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn-close" id="cancel-search-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast hidden"></div>
 
     <script src="dashboard.js"></script>
 
 </body>
-
 </html>

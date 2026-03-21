@@ -52,7 +52,7 @@ async function delete_task(id){
 async function get_task_members(task_id){
     const client= await pool.connect()
     try{
-        const res = (await client.query(`select member_id from task_members where task_id= $1`,[task_id])).rows[0]
+        const res = await client.query(`select member_id from task_members where task_id= $1`,[task_id]).rows
         console.log(res)
         const m =[]
         res.forEach(x => {
@@ -103,7 +103,7 @@ async function delete_member(task_id,member_id){
 async function update_status(task_id , status){
     const client= await pool.connect()
     try{
-        const result= await client.query('updata tasks set satus= $1 where id=$2 returning *',[status,task_id])
+        const result= await client.query('update tasks set satus= $1 where id=$2 returning *',[status,task_id])
         return result.rows[0]
     }
 

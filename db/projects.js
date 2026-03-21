@@ -49,10 +49,10 @@ async function get_project_by_id(id){
     const client = await pool.connect()
     try{
         const data = await client.query(`
-            Select id,name,description
+            Select id,name,description,owner_id
             from projects
-            where id=${id}
-        `)
+            where id=$1
+        `,[id])
         return data.rows
     }
     catch(err){
@@ -63,7 +63,39 @@ async function get_project_by_id(id){
     }
 }
 
-module.exports={create_project,get_user_projects,get_project_by_id}
+async function get_project_data_by_name(project_name,user_id) {
+    const client = await pool.connect()
+    try{
+        const data = await client.query(`
+            SELECT 
+                projects.id, 
+                projects.name, 
+                projects.description,
+                CASE 
+                    WHEN join_req.status = 'waiting' THEN 'pending'
+                    WHEN pm.user_id IS NOT NULL THEN 'member'
+                    ELSE 'none'
+                END as request_status
+            FROM projects
+            LEFT JOIN join_req 
+                ON join_req.pro_id = projects.id AND join_req.user_id = $2
+            LEFT JOIN project_member pm 
+                ON pm.proj_id = projects.id AND pm.user_id = $2
+            WHERE projects.name = $1`,[project_name,user_id])
+        if(data.rows.length===0){
+            return{error:'Project not founed'}
+        }
+        return data.rows
+    }
+    catch(err){
+        console.error(err)
+    }
+    finally{
+        client.release();
+    }
+}
+
+module.exports={create_project,get_user_projects,get_project_by_id,get_project_data_by_name}
 
 
 

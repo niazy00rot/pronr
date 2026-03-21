@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {get_project_tasks,add_task,get_task_members,add_member,delete_task, get_project_owner, delete_member } = require('../../db/tasks')
+const {get_project_tasks,add_task,get_task_members,update_status,add_member,delete_task, get_project_owner, delete_member } = require('../../db/tasks')
 const jwt = require('jsonwebtoken')
 
 

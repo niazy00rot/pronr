@@ -8,6 +8,7 @@ const root_router= require('./routers/root.js')
 const user_router= require('./routers/user.js')
 const project_router = require('./routers/projects.js')
 const tasks_router = require('./routers/tasks.js')
+const requists_router = require('./routers/requist.js')
 
 const port = 3001
 
@@ -24,6 +25,7 @@ app.use('/', root_router)
 app.use('/', user_router)
 app.use('/', project_router)
 app.use('/', tasks_router)
+app.use('/', requists_router)
 app.listen(port, ()=>{
     console.log(`Server running on port ${port}`)
 })
