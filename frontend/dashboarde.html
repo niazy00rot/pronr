@@ -15,21 +15,17 @@
 
     <div class="container">
 
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="logo">
                 <h2>Project Manager</h2>
             </div>
             <div id="person-info">
-                <!-- user info renders here -->
             </div>
             <button class="logout-btn" id="logout-btn">Logout</button>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
 
-            <!-- Navbar -->
             <div class="navbar">
                 <button class="create-btn" onclick="render_create_project_form()">
                     + Create Project
@@ -43,19 +39,15 @@
                 </div>
             </div>
 
-            <!-- Projects Grid -->
             <div id="projects">
-                <!-- cards render here -->
             </div>
 
         </main>
 
-        <!-- Create Project Modal -->
         <div id="create_project"></div>
 
     </div>
 
-    <!-- INVITES MODAL -->
     <div class="modal-overlay hidden" id="invites-modal">
         <div class="modal">
             <div class="modal-header">
@@ -71,7 +63,6 @@
         </div>
     </div>
 
-    <!-- SEARCH PROJECT MODAL -->
     <div class="modal-overlay hidden" id="search-modal">
         <div class="modal">
             <div class="modal-header">
@@ -91,7 +82,6 @@
         </div>
     </div>
 
-    <!-- TOAST -->
     <div id="toast" class="toast hidden"></div>
 
     <script src="dashboard.js"></script>

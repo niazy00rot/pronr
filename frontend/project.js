@@ -16,13 +16,11 @@ function authHeaders() {
     };
 }
 
-// Decode JWT to get current user id (without a library)
 function getCurrentUserId() {
     const token = getToken();
     if (!token) return null;
     try {
         const payload = JSON.parse(atob(token.split('.')[1]));
-        // matches how your backend encodes: jwt.sign({ id: { id: ... } })
         return payload.id.id;
     } catch {
         return null;
@@ -245,7 +243,6 @@ function checkOwnerAndShowButtons(project) {
     if (currentId && String(p.owner_id) === String(currentId)) {
         document.getElementById('invite-btn').classList.remove('hidden');
         document.getElementById('join-requests-btn').classList.remove('hidden');
-        // load badge count
         fetchJoinRequests().then(reqs => {
             const badge = document.getElementById('requests-badge');
             if (reqs && reqs.length > 0) {
@@ -343,7 +340,6 @@ async function handleRespondRequest(user_id, status, btn) {
 ───────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Load project + tasks
     (async () => {
         try {
             const projectData = await getProjectById();
@@ -369,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })();
 
-    // Add Task Modal
     document.getElementById('add-task-btn').addEventListener('click', () => openModal('add-modal'));
     document.getElementById('close-add-modal').addEventListener('click', () => closeModal('add-modal'));
     document.getElementById('cancel-add-modal').addEventListener('click', () => closeModal('add-modal'));
@@ -394,7 +389,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Delete Modal
     document.getElementById('close-delete-modal').addEventListener('click', () => closeModal('delete-modal'));
     document.getElementById('cancel-delete-modal').addEventListener('click', () => closeModal('delete-modal'));
 
@@ -415,11 +409,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Members Modal
     document.getElementById('close-members-modal').addEventListener('click', () => closeModal('members-modal'));
     document.getElementById('cancel-members-modal').addEventListener('click', () => closeModal('members-modal'));
-
-    // Invite Modal (owner only)
     document.getElementById('invite-btn').addEventListener('click', () => openModal('invite-modal'));
     document.getElementById('close-invite-modal').addEventListener('click', () => closeModal('invite-modal'));
     document.getElementById('cancel-invite-modal').addEventListener('click', () => closeModal('invite-modal'));

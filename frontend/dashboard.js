@@ -227,7 +227,6 @@ async function handleJoinRequest(project_id, btn) {
             btn.textContent = 'Request to Join';
             return;
         }
-        // replace button with pending tag
         btn.outerHTML = `<span class="status-tag pending">⏳ Pending</span>`;
         showToast('Request sent!');
     } catch (err) {
@@ -300,7 +299,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) { console.error('Invites error:', err); }
     })();
 
-    // Invites modal
     document.getElementById('notif-btn').addEventListener('click', async () => {
         document.getElementById('invites-list').innerHTML = '<li style="color:var(--text-muted);padding:12px">Loading...</li>';
         openModal('invites-modal');
@@ -314,7 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('close-invites-modal').addEventListener('click', () => closeModal('invites-modal'));
     document.getElementById('cancel-invites-modal').addEventListener('click', () => closeModal('invites-modal'));
 
-    // Search modal
     document.getElementById('search-btn').addEventListener('click', () => {
         document.getElementById('search-results').innerHTML = '';
         document.getElementById('search-project-input').value = '';
@@ -340,19 +337,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Search on Enter key
     document.getElementById('search-project-input').addEventListener('keydown', (e) => {
         if (e.key === 'Enter') document.getElementById('search-go-btn').click();
     });
 
-    // Close modal on backdrop click
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
         overlay.addEventListener('click', e => {
             if (e.target === overlay) overlay.classList.add('hidden');
         });
     });
 
-    // Logout
     document.getElementById('logout-btn').addEventListener('click', () => {
         localStorage.removeItem('token');
         window.location.href = '/';
